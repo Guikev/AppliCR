@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+body {
+background-color: white;
+color:5599EE;
+bgcolor: white;
+text: 5599EE;
+}
+
+label.titre {
+width : 180 ;
+clear:left;
+float:left;
+}
+
+.zone {
+width : 30car ;
+float : left;
+color:5599EE;
+}
