@@ -1,21 +1,73 @@
+<html>
+<head>
+	<title>GSB : Suivi de la Visite mÃ©dicale </title>
+	<link href="./css/style.css" rel="stylesheet" type="text/css" />
+	<?php echo meta('Content-type','text/html; charset=utf-8', 'equiv');?>
+	<script language="javascript">
+		function selectionne(pValeur, pSelection,  pObjet) {
+			//active l'objet pObjet du formulaire si la valeur sï¿½lectionnï¿½e (pSelection) est ï¿½gale ï¿½ la valeur attendue (pValeur)
+			if (pSelection==pValeur) 
+				{ formRAPPORT_VISITE.elements[pObjet].disabled=false; }
+			else { formRAPPORT_VISITE.elements[pObjet].disabled=true; }
+		}
+	</script>
+	<script language="javascript">
+        function ajoutLigne( pNumero){//ajoute une ligne de produits/qtï¿½ ï¿½ la div "lignes"     
+			//masque le bouton en cours
+			document.getElementById("but"+pNumero).setAttribute("hidden","true");	
+			pNumero++;										//incrï¿½mente le numï¿½ro de ligne
+            var laDiv=document.getElementById("lignes");	//rï¿½cupï¿½re l'objet DOM qui contient les donnï¿½es
+			var titre = document.createElement("label") ;	//crï¿½e un label
+			laDiv.appendChild(titre) ;						//l'ajoute ï¿½ la DIV
+			titre.setAttribute("class","titre") ;			//dï¿½finit les propriï¿½tï¿½s
+			titre.innerHTML= "   Produit : ";
+			var liste = document.createElement("select");	//ajoute une liste pour proposer les produits
+			laDiv.appendChild(liste) ;
+			liste.setAttribute("name","PRA_ECH"+pNumero) ;
+			liste.setAttribute("class","zone");
+			//remplit la liste avec les valeurs de la premiï¿½re liste construite en PHP ï¿½ partir de la base
+			liste.innerHTML=formRAPPORT_VISITE.elements["PRA_ECH1"].innerHTML;
+			var qte = document.createElement("input");
+			laDiv.appendChild(qte);
+			qte.setAttribute("name","PRA_QTE"+pNumero);
+			qte.setAttribute("size","2"); 
+			qte.setAttribute("class","zone");
+			qte.setAttribute("type","text");
+			var bouton = document.createElement("input");
+			laDiv.appendChild(bouton);
+			//ajoute une gestion ï¿½venementielle en faisant ï¿½voluer le numï¿½ro de la ligne
+			bouton.setAttribute("onClick","ajoutLigne("+ pNumero +");");
+			bouton.setAttribute("type","button");
+			bouton.setAttribute("value","+");
+			bouton.setAttribute("class","zone");	
+			bouton.setAttribute("id","but"+ pNumero);				
+        }
+    </script>
+	
+</head>
 
+<body bgcolor="white" text="5599EE">
 
-<div name="haut" style="margin: 2 2 2 2 ;height:6%;"><h1><img src="images/logo.jpg" width="100" height="60"/>Gestion des visites</h1></div>
+<div name="haut" style="margin: 2 2 2 2 ;height:6%;">
+	<h1> <?php echo img(array('src'=>'img/logo.jpg', 'width'=>'100', 'height'=>'60')); ?> Gestion des visites</h1>
+</div>
+
 <div name="gauche" style="float:left;width:18%; background-color:white; height:100%;">
 	<h2>Outils</h2>
 	<ul><li>Comptes-Rendus</li>
 		<ul>
-			<li><a href="formRAPPORT_VISITE.php" >Nouveaux</a></li>
+			<li><?php echo anchor('menu/rapport_visite','Nouveaux')?></li>
 			<li>Consulter</li>
 		</ul>
 		<li>Consulter</li>
-		<ul><li><a href="formMEDICAMENT.php" >Médicaments</a></li>
-			<li><a href="formPRATICIEN.php" >Praticiens</a></li>
+		<ul>
+			<li><?php echo anchor('c_medicament','MÃ©dicaments')?></li>
+			<li><?php echo anchor('c_praticien','Praticiens')?></li>
 			<li><?php echo anchor('visiteur', 'Autres visiteurs'); ?></li>
 		</ul>
 		<?php if($id != false) 
 		{
-			echo '<li>'.anchor('connexion/deconnexion', 'Déconnexion').'</li>';
+			echo '<li>'.anchor('connexion/deconnexion', 'Dï¿½connexion').'</li>';
 		}?>
 	</ul>
 </div>
