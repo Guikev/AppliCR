@@ -1,6 +1,6 @@
 <?php
 /**
- * Le model m_connexion permet de vï¿½rifier si le login et le mot de passe
+ * Le model m_connexion permet de vérifier si le login et le mot de passe
  * d'un visiteur sont dans la table Visiteur.
  * 
  * @author 
@@ -11,7 +11,7 @@ class M_Connexion extends CI_Model
 {
 	
 	/**
-	 * Vï¿½rifie le login et le mdp du visiteurs dans la base eonnï¿½es.
+	 * Vérifie le login et le mdp du visiteurs dans la base eonnées.
 	 * 
 	 * @param String $login
 	 * @param String $mdp

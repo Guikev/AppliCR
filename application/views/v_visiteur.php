@@ -1,9 +1,8 @@
 	<div name="droite" style="float:left;width:80%;">
 		<div name="bas" style="margin : 10 2 2 2;clear:left;background-color:77AADD;color:white;height:88%;">
-		<h1> Collaborateurs </h1>
+		<h1> Visiteurs </h1>
 		
-		<?php echo form_open('c_visiteur',array('method'=>'post','name'=>'chercher'));?>
-			<!-- A dynamiser /!\ -->
+		<?php echo form_open('visiteur',array('method'=>'post','name'=>'chercher'));?>
 			<select name="lstVisiteur" class="zone">
 			<?php foreach($lstVis as $v){?>
 				<option value="<?php echo $v['VIS_MATRICULE']?>"><?php echo $v['VIS_NOM']." ".$v['Vis_PRENOM']?></option>
@@ -14,7 +13,7 @@
 		
 
 		
-			<?php echo form_open('c_visiteur',array('method'=>'post','name'=>'formVisiteur'));?>
+			<?php echo form_open('visiteur',array('method'=>'post','name'=>'formVisiteur'));?>
 		
 			<label class="titre">NOM :</label><input type="text" size="25" name="VIS_NOM" class="zone" value="<?php echo $leVisiteur['VIS_NOM']?>"/> <br/>
 			<label class="titre">PRENOM :</label><input type="text" size="50" name="Vis_PRENOM" class="zone" value="<?php echo $leVisiteur['Vis_PRENOM']?>"/> <br/>

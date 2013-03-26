@@ -30,9 +30,6 @@ class M_Visiteur extends CI_Model
 		{
 			return null; 
 		}
-		
-		
-		
 	}
 	
 	/**
@@ -123,4 +120,5 @@ class M_Visiteur extends CI_Model
 		$res=$this->db->query($req)->result_array();
 		return $res;
 	}
+	
 }

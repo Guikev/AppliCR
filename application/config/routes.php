@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "c_connexion";
+$route['default_controller'] = "connexion";
 $route['404_override'] = '';
 
 
