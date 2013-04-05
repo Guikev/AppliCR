@@ -4,8 +4,8 @@ class Connexion extends CI_Controller
 {
 
 	/**
-	 * Appel la vue vAuthenfication et vérifie les données saisies pour lors
-	 * de l'authenfication d'un visiteur (login et mdp saisis, et visiteur présent dans la base)
+	 * Appel la vue vAuthenfication et vï¿½rifie les donnï¿½es saisies pour lors
+	 * de l'authenfication d'un visiteur (login et mdp saisis, et visiteur prï¿½sent dans la base)
 	 *
 	 */
 	public function index()
@@ -25,6 +25,7 @@ class Connexion extends CI_Controller
 			$login=$this->input->post('identifiant');
 			$mdp=$this->input->post('password');
 			$id=$this->m_connexion->check_infos_connexion($login,$mdp);
+			
 			if($id!=-1)
 			{
 				$this->session->set_userdata('idConnecte', $id);
@@ -36,17 +37,38 @@ class Connexion extends CI_Controller
 		}
 		
 		$session_id = $this->session->userdata('idConnecte');
-		$this->load->view('_entete.php');
-		$this->load->view('menuCR.php',array('id'=>$session_id));
 		
-		$this->load->view('vAuthentification.php',$data);	
-		$this->load->view('_pied.php');
+		if ($this->session->userdata('idConnecte') == false)
+		{
+			$this->load->view('_entete.php');
+			$this->load->view('menuCR.php',array('id'=>$session_id));
+			$this->load->view('vAuthentification.php',$data);	
+			$this->load->view('_pied.php');
+		}
+		else 
+		{
+			$this->accueil();
+		}
+		
 	}
 	
 	public function deconnexion()
 	{
 		$this->session->sess_destroy();
 		$this->index();
+	}
+	
+	public function accueil()
+	{
+		$session_id = $this->session->userdata('idConnecte');
+		if($session_id != FALSE)
+		{
+			$this->load->view('_entete.php');
+			$this->load->view('menuCR.php',array('id'=>$session_id));
+			
+			$this->load->view('v_accueil');
+			$this->load->view('_pied.php');
+		}
 	}
 }
 

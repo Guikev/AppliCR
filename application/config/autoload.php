@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
+$autoload['model'] = array('m_connexion','m_medicaments','m_praticien',"m_rapport_visite",'m_visiteur');
 
 
 /* End of file autoload.php */

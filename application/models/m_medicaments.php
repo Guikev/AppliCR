@@ -98,4 +98,16 @@ class M_Medicaments extends CI_Model
         	return $premierM[0]['MED_DEPOTLEGAL'];
         }
         
+        /**
+         * Renvoie la liste des médicaments de la base de donnée
+         * @return liste de tous les médicaments
+         */
+        function get_medicament()
+        {
+        	$this->load->database();
+        	$sql = "SELECT * FROM medicament";
+        	$query = $this->db->query($sql);
+        	return $query->result();
+        }
+        
 }
